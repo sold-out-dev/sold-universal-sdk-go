@@ -7,7 +7,7 @@ import (
 
 // GenerateSensorData returns the sensor data required to generate valid akamai cookies using the API.
 func (s *Session) GenerateSensorData(ctx context.Context, input *SensorInput) (string, string, error) {
-	response, err := sendRequest[*SensorInput, *apiResponse](ctx, s, s.baseUrl()+"/v3/sensor", input)
+	response, err := sendRequest[*SensorInput, *apiResponse](ctx, s, s.baseUrl()+"/v2/sensor", input)
 	if err != nil {
 		return "", "", err
 	}
