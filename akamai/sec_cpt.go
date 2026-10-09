@@ -56,6 +56,7 @@ type secCptApiResponse struct {
 	Timestamp          int    `json:"timestamp"`
 	Nonce              string `json:"nonce"`
 	Difficulty         int    `json:"difficulty"`
+	Count              int    `json:"count"`
 	Timeout            int    `json:"timeout"`
 	CPU                bool   `json:"cpu"`
 }
@@ -146,6 +147,7 @@ func ParseSecCptChallengeFromJson(payload io.Reader) (*SecCptChallenge, error) {
 			Timestamp:  apiResponse.Timestamp,
 			Nonce:      apiResponse.Nonce,
 			Difficulty: apiResponse.Difficulty,
+			Count:      apiResponse.Count,
 			Timeout:    apiResponse.Timeout,
 		},
 		duration:      apiResponse.ChlgDuration,
@@ -292,8 +294,16 @@ func (s *SecCptChallenge) SleepWithContext(ctx context.Context) {
 	}
 }
 
+// legacySecCptAnswerCount is how many answers a challenge without a `count`
+// field expects: the original implementation always generated ten.
+const legacySecCptAnswerCount = 10
+
 func generateSecCptAnswers(sec string, challengeData *secCptChallengeData) []string {
-	answers := make([]string, challengeData.Count)
+	count := challengeData.Count
+	if count <= 0 {
+		count = legacySecCptAnswerCount
+	}
+	answers := make([]string, count)
 	challenge := sec + strconv.Itoa(challengeData.Timestamp) + challengeData.Nonce
 	hash := sha256.New()
 	var hashBytes [sha256.Size]byte
