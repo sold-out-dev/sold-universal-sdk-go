@@ -1,4 +1,4 @@
-module github.com/sold-out-dev/sold-universal-sdk-go
+module github.com/sold-out-dev/sold-universal-sdk-go/v2
 
 go 1.22.0
 

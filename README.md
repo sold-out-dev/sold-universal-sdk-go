@@ -12,7 +12,7 @@ Before using this SDK you need an API key:
 ## 📦 Installation
 
 ```bash
-go get github.com/sold-out-dev/sold-universal-sdk-go
+go get github.com/sold-out-dev/sold-universal-sdk-go/v2
 ```
 
 ## 🔧 Basic Usage
@@ -24,7 +24,7 @@ import (
 	"context"
 	"fmt"
 
-	universalsdk "github.com/sold-out-dev/sold-universal-sdk-go"
+	universalsdk "github.com/sold-out-dev/sold-universal-sdk-go/v2"
 )
 
 func main() {
@@ -105,8 +105,18 @@ Pixel parsing helpers: `ParsePixelHtmlVar`, `ParsePixelScriptURL`, `ParsePixelSc
 ### SBSD Challenge Solving
 
 ```go
-sbsdData, err := session.GenerateSbsdData(ctx, &universalsdk.SbsdInput{
-	// SBSD parameters
+// First request: send the script, keep the returned context.
+sbsdData, sbsdContext, err := session.GenerateSbsdData(ctx, &universalsdk.SbsdInput{
+	Index:  0,
+	Script: script,
+	// other SBSD parameters
+})
+
+// Subsequent requests: send the context instead of the script.
+sbsdData, sbsdContext, err = session.GenerateSbsdData(ctx, &universalsdk.SbsdInput{
+	Index:   1,
+	Context: sbsdContext,
+	// other SBSD parameters
 })
 ```
 

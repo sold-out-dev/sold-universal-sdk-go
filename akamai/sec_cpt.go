@@ -14,8 +14,8 @@ import (
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
-	"github.com/sold-out-dev/sold-universal-sdk-go/akamai/internal"
-	"github.com/sold-out-dev/sold-universal-sdk-go/internal/orderedobject"
+	"github.com/sold-out-dev/sold-universal-sdk-go/v2/akamai/internal"
+	"github.com/sold-out-dev/sold-universal-sdk-go/v2/internal/orderedobject"
 )
 
 var (

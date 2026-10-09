@@ -9,7 +9,7 @@ import (
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/buffer"
 	"github.com/mailru/easyjson/jwriter"
-	"github.com/sold-out-dev/sold-universal-sdk-go/internal"
+	"github.com/sold-out-dev/sold-universal-sdk-go/v2/internal"
 	"net/http"
 )
 
