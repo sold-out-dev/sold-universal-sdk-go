@@ -12,7 +12,7 @@ Before using this SDK you need an API key:
 ## 📦 Installation
 
 ```bash
-go get github.com/sold-out-dev/sold-universal-sdk-go/v2
+go get github.com/sold-out-dev/sold-universal-sdk-go
 ```
 
 ## 🔧 Basic Usage
@@ -24,7 +24,7 @@ import (
 	"context"
 	"fmt"
 
-	universalsdk "github.com/sold-out-dev/sold-universal-sdk-go/v2"
+	universalsdk "github.com/sold-out-dev/sold-universal-sdk-go"
 )
 
 func main() {
